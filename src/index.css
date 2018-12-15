@@ -1,15 +1,22 @@
-.screen {
-	width: 0%;
-	height: 0%;
+div .screen {
+	width: 100px;
+	height: 100px;
 	margin-top: -100px;
     margin-left: -100px;
+    margin-bottom: 0px;
+    margin-right: 0px;
     border-radius: 50%;
     height: 200px;
     width: 200px;
     background-color: #f266;
 }
 
-body div {
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+#root .outer{
 	width: 100vw;
 	height: 100vh;
 }
