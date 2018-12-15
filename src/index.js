@@ -2,26 +2,69 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+function Radius(props) {
+  return (
+    <div className="radius">
+    </div>
+  )
 }
 
-function Bye(props) {
-	return <h1>goodbye, {props.name},{props.name2}</h1>;
-}
-
-function App() {
+function Name(props) {
   return (
     <div>
-      <Welcome name="Sara" />
-      <Welcome name="Cahal" />
-      <Welcome name="Edite" />
-      <Bye name="ele" name2="hana" />
+      {props.name}
     </div>
-  );
+  )
 }
 
+class Hello extends React.Component{
+  render(){
+    const text = this.props.text;
+    return (
+      <Name name={text}/>
+    );
+  }
+}
+
+class Bye extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: 0, y: 0, countRadius: 0
+    }
+  }
+
+  onClick(e){
+    const countRadius = this.state.countRadius + 1
+    console.log("countRadius=" + countRadius)
+    this.setState({
+      x:e.pageX, y: e.pageY, countRadius: countRadius
+    })
+    console.log(e.pageX + ":" + e.pageY)
+  }
+
+  render(){
+      const left = this.state.x + "px"
+      const top = this.state.y + "px"
+    const radiusStyle = {
+      top: top,
+      left: left,
+      position: "relative"
+    }
+    console.log(radiusStyle)
+
+    return(
+      <div onClick={(e) => this.onClick(e)}>
+        <div className="screen" style={radiusStyle}>
+            <Radius/>
+        </div>
+      </div>
+    )
+  }
+}
+  
 ReactDOM.render(
-  <App />,
+  <Bye />,
   document.getElementById('root')
 );
